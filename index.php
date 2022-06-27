@@ -2,8 +2,8 @@
 require_once __DIR__ . './movie.php';
 
     $movies = [
-        new Movie("Il Gladiatore", "19 Maggio 2000"),
-        new Movie("Gli Aristogatti", "13 Novembre 1971"),
+        new Movie("Il Gladiatore", "19 Maggio 2000","2h 35m","yes", ""),
+        new Movie("Gli Aristogatti", "13 Novembre 1971","1h 18m","no", ""),
     ];
 
 ?>
@@ -27,13 +27,26 @@ require_once __DIR__ . './movie.php';
     <title>Document</title>
 </head>
 <body>
-    <h1>I FILM</h1>
+    <h1><u>I FILM</u></h1>
     <ul>
-        
+
         <?php foreach($movies as $movie) { ?>
 
             <li>
-                <h3><?php echo $movie->name; ?></h3>
+                <h2><?php echo $movie->name; ?></h2>
+                <h4>Pubblicato il: <i><?php echo $movie->date; ?></i></h4>
+                <h6> Durata: <?php echo $movie->time; ?></h6>
+                <h5>
+                    <?php 
+                    $alert = $movie->get18();
+                    if ($alert) {
+                    ?>
+                    <strong><?php echo $alert; ?></strong>
+                    <?php } ?>
+
+
+                </h5>
+
             </li>
 
         <?php } ?>
